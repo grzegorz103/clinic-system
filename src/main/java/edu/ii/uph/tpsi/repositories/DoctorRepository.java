@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface DoctorRepository extends JpaRepository<Doctor, Long>
 {
-        boolean existsByPesel(String pesel);
+        boolean existsByPesel ( String pesel );
 
-        Doctor findByPesel(String pesel;)
+        Doctor findByPesel ( String pesel );
 }
