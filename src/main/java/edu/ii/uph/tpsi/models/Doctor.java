@@ -3,12 +3,14 @@ package edu.ii.uph.tpsi.models;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="doctors")
+@Table (name = "doctors")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,15 +20,20 @@ public class Doctor
         @GeneratedValue
         private Long id;
 
-        @Column(name="pesel")
+        @Column (name = "pesel")
         private String pesel;
 
-        @Column(name="name")
+        @Column (name = "name")
         private String name;
 
-        @Column(name="surname")
+        @Column (name = "surname")
         private String surname;
 
+        @OneToOne
+        @JoinColumn (name = "user_id")
+        private User user;
+
         @OneToMany (mappedBy = "doctor", fetch = FetchType.EAGER)
+        @LazyCollection (LazyCollectionOption.FALSE)
         private List<Patient> patients;
 }
