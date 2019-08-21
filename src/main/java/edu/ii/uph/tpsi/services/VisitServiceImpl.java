@@ -1,9 +1,11 @@
 package edu.ii.uph.tpsi.services;
 
 import edu.ii.uph.tpsi.models.Visit;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class VisitServiceImpl implements VisitService
 {
         @Override

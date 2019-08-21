@@ -1,16 +1,16 @@
 package edu.ii.uph.tpsi.services;
 
-import edu.ii.uph.tpsi.models.Patient;
+import edu.ii.uph.tpsi.models.User;
 
 import java.util.List;
 
 public interface UserService
 {
-        Patient create( Patient doctor);
+        User create( User user);
 
-        List<Patient> findAll();
+        List<User> findAll();
 
-        Patient update(Patient doctor);
+        User update(User user);
 
-        Patient removeById(Long id);
+        User removeById( Long id);
 }
