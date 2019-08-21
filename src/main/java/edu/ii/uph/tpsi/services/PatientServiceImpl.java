@@ -22,11 +22,6 @@ public class PatientServiceImpl implements PatientService
         @Override
         public Patient create ( @NotNull Patient doctor )
         {
-                if ( patientRepository.existsByPesel( doctor.getPesel() ) )
-                {
-                        throw new RuntimeException( "Doctor already exists" );
-                }
-
                 return patientRepository.save( doctor );
         }
 
@@ -39,19 +34,7 @@ public class PatientServiceImpl implements PatientService
         @Override
         public Patient update ( @NotNull Patient patient )
         {
-                Patient fromDb = patientRepository.findByPesel( patient.getPesel() );
-
-                if ( fromDb == null )
-                {
-                        throw new RuntimeException( "Patient does not exists" );
-                }
-
-                fromDb.setDateOfBirth( patient.getDateOfBirth() );
-                fromDb.setName( patient.getName() );
-                fromDb.setDateOfBirth( patient.getDateOfBirth() );
-                fromDb.setSurname( patient.getSurname() );
-
-                return patientRepository.save( fromDb );
+                return patientRepository.save( patient );
         }
 
         @Override

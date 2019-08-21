@@ -9,7 +9,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping ("/patients")
 public interface PatientRepository extends JpaRepository<Patient, Long>
 {
-        boolean existsByPesel ( String pesel );
 
-        Patient findByPesel ( String pesel );
 }

@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.Instant;
 import java.util.Set;
 
 @Entity
@@ -25,6 +26,18 @@ public class User
 
         @Column (name = "password")
         private String password;
+
+        @Column (name = "pesel")
+        private String pesel;
+
+        @Column (name = "name")
+        private String name;
+
+        @Column (name = "surname")
+        private String surname;
+
+        @Column (name = "date_of_birth")
+        private Instant dateOfBirth;
 
         @ManyToMany (fetch = FetchType.EAGER)
         @JoinTable (name = "users_roles",

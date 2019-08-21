@@ -20,15 +20,6 @@ public class Doctor
         @GeneratedValue
         private Long id;
 
-        @Column (name = "pesel")
-        private String pesel;
-
-        @Column (name = "name")
-        private String name;
-
-        @Column (name = "surname")
-        private String surname;
-
         @OneToOne
         @JoinColumn (name = "user_id")
         private User user;

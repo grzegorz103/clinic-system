@@ -1,6 +1,7 @@
 package edu.ii.uph.tpsi.models;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.LazyCollection;
@@ -15,25 +16,14 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Patient
 {
         @Id
         @GeneratedValue (strategy = GenerationType.IDENTITY)
         private Long id;
 
-        @Column (name = "pesel")
-        private String pesel;
-
-        @Column (name = "name")
-        private String name;
-
-        @Column (name = "surname")
-        private String surname;
-
-        @Column (name = "date_of_birth")
-        private Instant dateOfBirth;
-
-        @OneToOne
+        @OneToOne(cascade = CascadeType.ALL)
         @JoinColumn (name = "user_id")
         private User user;
 
