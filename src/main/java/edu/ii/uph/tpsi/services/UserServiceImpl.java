@@ -7,6 +7,10 @@ import edu.ii.uph.tpsi.repositories.PatientRepository;
 import edu.ii.uph.tpsi.repositories.UserRepository;
 import edu.ii.uph.tpsi.repositories.UserRoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.NotNull;
@@ -14,6 +18,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService
@@ -24,12 +29,18 @@ public class UserServiceImpl implements UserService
 
         private final UserRoleRepository userRoleRepository;
 
+        private final BCryptPasswordEncoder encoder;
+
         @Autowired
-        public UserServiceImpl ( UserRepository userRepository, PatientRepository patientRepository, UserRoleRepository userRoleRepository )
+        public UserServiceImpl ( UserRepository userRepository,
+                                 PatientRepository patientRepository,
+                                 UserRoleRepository userRoleRepository,
+                                 BCryptPasswordEncoder encoder )
         {
                 this.userRepository = userRepository;
                 this.patientRepository = patientRepository;
                 this.userRoleRepository = userRoleRepository;
+                this.encoder = encoder;
         }
 
         @Override
@@ -64,4 +75,37 @@ public class UserServiceImpl implements UserService
         {
                 return null;
         }
+
+        @Override
+        public UserDetails loadUserByUsername ( String s ) throws UsernameNotFoundException
+        {
+                User u = userRepository.findByUsername( s );
+
+                if ( u == null )
+                {
+                        throw new UsernameNotFoundException( "User not found" );
+                }
+
+                return new org.springframework.security.core.userdetails.User(
+                        u.getUsername(),
+                        u.getPassword(),
+                        u.getUserRoles().stream()
+                                .map( e -> new SimpleGrantedAuthority( e.getUserType().name() ) )
+                                .collect( Collectors.toList() )
+                );
+        }
+
+        @Override
+        public boolean isLoginCorrect ( String username, String password )
+        {
+                User u = userRepository.findByUsername( username );
+                if ( u == null )
+                {
+                        return false;
+                }
+
+                return u.getUsername().equals( username )
+                        && encoder.matches( password, u.getPassword() );
+        }
 }
+

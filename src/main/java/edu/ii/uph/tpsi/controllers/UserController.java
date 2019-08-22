@@ -23,6 +23,12 @@ public class UserController
                 this.userService = userService;
         }
 
+        @PostMapping ("/login")
+        public boolean login ( String username, String password )
+        {
+                return userService.isLoginCorrect( username, password );
+        }
+
         @PostMapping
         public User create ( @RequestBody User user )
         {
