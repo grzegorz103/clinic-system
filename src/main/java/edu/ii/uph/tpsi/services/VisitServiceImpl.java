@@ -19,7 +19,7 @@ public class VisitServiceImpl implements VisitService
         }
 
         @Override
-        public Visit create ( Visit doctor )
+        public Visit create ( Visit visit )
         {
                 return null;
         }
@@ -31,9 +31,17 @@ public class VisitServiceImpl implements VisitService
         }
 
         @Override
-        public Visit update ( Visit doctor )
+        public Visit update ( Visit visit )
         {
-                return null;
+                Visit fromDb = visitRepository.findById( visit.getId() ).orElse( null );
+
+                if ( fromDb == null )
+                {
+                        throw new RuntimeException( "Visit not found exception" );
+                }
+
+                fromDb.setVisitDate( visit.getVisitDate() );
+                return visitRepository.save( fromDb );
         }
 
         @Override

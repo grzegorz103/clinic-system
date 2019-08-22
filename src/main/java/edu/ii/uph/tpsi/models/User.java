@@ -1,5 +1,6 @@
 package edu.ii.uph.tpsi.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -36,9 +37,6 @@ public class User
         @Column (name = "surname")
         private String surname;
 
-        @Column (name = "date_of_birth")
-        private Instant dateOfBirth;
-
         @ManyToMany (fetch = FetchType.EAGER)
         @JoinTable (name = "users_roles",
                 joinColumns = @JoinColumn (name = "user_id"),
@@ -47,6 +45,7 @@ public class User
 
         @OneToOne (mappedBy = "user", cascade = CascadeType.ALL,
                 fetch = FetchType.LAZY, optional = false)
+        @JsonIgnore
         private Doctor doctor;
 
         @OneToOne (mappedBy = "user", cascade = CascadeType.ALL,

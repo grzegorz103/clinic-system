@@ -8,6 +8,7 @@ import edu.ii.uph.tpsi.repositories.UserRepository;
 import edu.ii.uph.tpsi.repositories.UserRoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -106,6 +107,18 @@ public class UserServiceImpl implements UserService
 
                 return u.getUsername().equals( username )
                         && encoder.matches( password, u.getPassword() );
+        }
+
+        @Override
+        public boolean hasAdminRole ()
+        {
+                return (( User ) SecurityContextHolder
+                        .getContext()
+                        .getAuthentication()
+                        .getPrincipal()
+                ).getUserRoles()
+                        .stream()
+                        .anyMatch( e -> e.getUserType() == UserRole.UserType.ROLE_ADMIN );
         }
 }
 

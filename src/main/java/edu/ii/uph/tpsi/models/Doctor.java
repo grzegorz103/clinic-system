@@ -1,5 +1,6 @@
 package edu.ii.uph.tpsi.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,5 +27,6 @@ public class Doctor
 
         @OneToMany (mappedBy = "doctor", fetch = FetchType.EAGER)
         @LazyCollection (LazyCollectionOption.FALSE)
+        @JsonIgnore
         private List<Patient> patients;
 }

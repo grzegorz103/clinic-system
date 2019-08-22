@@ -1,4 +1,5 @@
 import {Patient} from "./patient";
+import { Doctor } from './doctor';
 
 export class User {
   id: number;
@@ -9,4 +10,5 @@ export class User {
   surname: string;
   dateOfBirth: Date;
   patient: Patient;
+  doctor: Doctor;
 }

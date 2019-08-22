@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping ("/users")
+@RequestMapping ("/api/users")
 public class UserController
 {
         private final UserService userService;
@@ -52,4 +52,17 @@ public class UserController
         {
                 return userService.removeById( id );
         }
+
+        @GetMapping ("/admin")
+        public Boolean hasAdminRole ()
+        {
+                return userService.hasAdminRole();
+        }
+
+        @RequestMapping ("/login")
+        public boolean login (  @RequestBody User user )
+        {
+                return userService.isLoginCorrect( user.getUsername(), user.getPassword() );
+        }
+
 }

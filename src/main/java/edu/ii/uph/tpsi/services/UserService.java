@@ -17,4 +17,6 @@ public interface UserService extends UserDetailsService
         User removeById( Long id);
 
         boolean isLoginCorrect(String username, String password);
+
+        boolean hasAdminRole ();
 }
