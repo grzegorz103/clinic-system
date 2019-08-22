@@ -38,11 +38,8 @@ export class UserService {
   }
 
   isLoginCorrect(username: string, password: string) {
-    return this.http.post<Observable<boolean>>('/api/users/login', {
-      username: username,
-      password: password,
-      passwordConfirm: password
-    });
+    return this.http.post<Observable<boolean>>('http://localhost:8080/api/users/login?username=' + username + '&password=' + password, null
+    );
   }
 
 }

@@ -3,9 +3,13 @@ package edu.ii.uph.tpsi.services;
 import edu.ii.uph.tpsi.models.Visit;
 import edu.ii.uph.tpsi.repositories.VisitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class VisitServiceImpl implements VisitService
@@ -54,5 +58,16 @@ public class VisitServiceImpl implements VisitService
         public List<Visit> findByDoctorId ( Long doctorId )
         {
                 return visitRepository.findByPatient_Doctor_Id( doctorId );
+        }
+
+        @Override
+        public List<Visit> findByPatient ()
+        {
+                Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+                String username = loggedInUser.getName();
+                return visitRepository.findAll()
+                        .stream()
+                        .filter( e -> e.getPatient().getUser().getUsername().equals( username ) )
+                        .collect( Collectors.toList() );
         }
 }

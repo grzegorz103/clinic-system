@@ -16,4 +16,6 @@ public interface VisitService
         Visit removeById(Long id);
 
         List<Visit> findByDoctorId(Long doctorId);
+
+        List<Visit> findByPatient();
 }

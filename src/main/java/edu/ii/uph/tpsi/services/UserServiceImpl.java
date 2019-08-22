@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService
                 }
 
                 user.setUserRoles( new HashSet<>( Collections.singletonList( userRoleRepository.findByUserType( UserRole.UserType.ROLE_USER ) ) ) );
-
+                user.setPassword( encoder.encode( user.getPassword() ) );
                 User saved = userRepository.save( user );
                 patientRepository.save( Patient.builder().doctor( user.getPatient().getDoctor() ).user( saved ).build() );
                 return saved;

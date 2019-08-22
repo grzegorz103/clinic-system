@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping ("/api/users")
+@CrossOrigin
 public class UserController
 {
         private final UserService userService;
@@ -59,10 +60,5 @@ public class UserController
                 return userService.hasAdminRole();
         }
 
-        @RequestMapping ("/login")
-        public boolean login (  @RequestBody User user )
-        {
-                return userService.isLoginCorrect( user.getUsername(), user.getPassword() );
-        }
 
 }

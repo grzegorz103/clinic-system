@@ -14,4 +14,8 @@ export class VisitService {
   create(visit: Visit){
     return this.http.post<Visit>(this.url, visit);
   }
+
+  findUsers(){
+    return this.http.get<Visit[]>(this.url + 'my');
+  }
 }

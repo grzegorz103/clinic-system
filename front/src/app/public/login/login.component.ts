@@ -17,6 +17,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private userService: UserService
   ) {
+    localStorage.clear();
+    sessionStorage.clear();
   }
 
   ngOnInit() {
@@ -32,10 +34,10 @@ export class LoginComponent implements OnInit {
         );
         this.userService.fetchAdminRole();
         localStorage.setItem('username', this.model.username);
-        alert('You have successfully logged in!');
-        this.router.navigate(['/books']);
+        alert('Zalogowano!');
+        this.router.navigate(['/']);
       } else {
-        alert('The login/password you provided is incorrect!');
+        alert('Hasło/login niepoprawne');
       }
     });
   }

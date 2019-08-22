@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping ("/api/visits")
+@CrossOrigin
 public class VisitController
 {
         private final VisitService visitService;
@@ -49,5 +50,11 @@ public class VisitController
         public List<Visit> findByDoctorId ( @PathVariable ("id") Long id )
         {
                 return visitService.findByDoctorId( id );
+        }
+
+        @GetMapping ("/my")
+        public List<Visit> findUsers ()
+        {
+                return visitService.findByPatient();
         }
 }
