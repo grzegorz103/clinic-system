@@ -44,4 +44,10 @@ public class VisitController
         {
                 return visitService.removeById( id );
         }
+
+        @GetMapping ("/bydoctor/{id}")
+        public List<Visit> findByDoctorId ( @PathVariable ("id") Long id )
+        {
+                return visitService.findByDoctorId( id );
+        }
 }

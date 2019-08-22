@@ -1,5 +1,6 @@
 package edu.ii.uph.tpsi.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,6 +25,7 @@ public class Patient
         private Long id;
 
         @OneToOne(cascade = CascadeType.ALL)
+        @JsonIgnore
         @JoinColumn (name = "user_id")
         private User user;
 
