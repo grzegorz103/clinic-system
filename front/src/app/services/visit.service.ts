@@ -7,6 +7,7 @@ import {HttpClient} from "@angular/common/http";
 })
 export class VisitService {
 
+
   url = 'http://localhost:8080/api/visits/';
 
   constructor(private http: HttpClient) { }
@@ -17,5 +18,9 @@ export class VisitService {
 
   findUsers(){
     return this.http.get<Visit[]>(this.url + 'my');
+  }
+
+  update(visit: Visit) {
+    return this.http.post<Visit>(this.url, visit);
   }
 }

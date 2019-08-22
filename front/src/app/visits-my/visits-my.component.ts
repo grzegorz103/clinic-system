@@ -18,4 +18,8 @@ export class VisitsMyComponent implements OnInit {
       .subscribe(res => this.visits = res);
   }
 
+  save(index: number) {
+    this.visitService.update(this.visits[index])
+      .subscribe(res => this.visits[index] = res);
+  }
 }

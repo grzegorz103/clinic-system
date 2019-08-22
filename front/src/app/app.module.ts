@@ -12,6 +12,7 @@ import { VisitCreateComponent } from './visit-create/visit-create.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from './services/user.service';
 import { RequestInterceptor } from './request-interceptor';
+import { VisitsMyComponent } from './visits-my/visits-my.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { RequestInterceptor } from './request-interceptor';
     NavbarComponent,
     LoginComponent,
     RegisterComponent,
-    VisitCreateComponent
+    VisitCreateComponent,
+    VisitsMyComponent
   ],
   imports: [
     BrowserModule,
