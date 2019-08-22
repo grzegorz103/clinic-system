@@ -16,13 +16,17 @@ export class VisitEditComponent implements OnInit {
 
   constructor(private visitService: VisitService,
     private activatedRoute: ActivatedRoute) {
-      moment.locale('pl');
+    moment.locale('pl');
     this.activatedRoute.params.subscribe(params =>
       this.id = params['id']
     );
   }
 
   ngOnInit() {
+    this.getVisit();
+  }
+
+  getVisit() {
     this.visitService.findById(this.id)
       .subscribe(res => {
         this.visit = res;
@@ -31,12 +35,16 @@ export class VisitEditComponent implements OnInit {
   }
 
   save() {
+    if (this.visit.visitDate.getTime() < Date.now()) {
+      alert('Niepoprawna data');
+      return;
+    }
     this.visitService.update(this.visit)
       .subscribe(res => {
         this.visit = res;
         this.visit.visitDate = new Date(this.visit.visitDate);
         alert('Wizyta zaktualizowana')
-      }, err => alert('Niepoprawna data'));
+      }, err => { alert('Data zajeta'); this.getVisit() });
   }
 
 }

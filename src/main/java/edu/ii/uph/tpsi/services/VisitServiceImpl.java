@@ -37,11 +37,25 @@ public class VisitServiceImpl implements VisitService
         @Override
         public Visit update ( Visit visit )
         {
+                if ( visitRepository.existsByVisitDate( visit.getVisitDate() ) )
+                {
+                        throw new RuntimeException( "Invalid date" );
+                }
                 Visit fromDb = visitRepository.findById( visit.getId() ).orElse( null );
 
                 if ( fromDb == null )
                 {
                         throw new RuntimeException( "Visit not found exception" );
+                }
+
+                if ( visitRepository.findByPatient_Doctor_Id(
+                        fromDb.getPatient()
+                                .getDoctor()
+                                .getId() )
+                        .stream()
+                        .anyMatch( e -> e.getVisitDate().equals( visit.getVisitDate() ) ) )
+                {
+                        throw new RuntimeException( "Date is taken" );
                 }
 
                 fromDb.setVisitDate( visit.getVisitDate() );
