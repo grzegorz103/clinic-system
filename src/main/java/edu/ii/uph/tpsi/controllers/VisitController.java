@@ -57,4 +57,10 @@ public class VisitController
         {
                 return visitService.findByPatient();
         }
+
+        @GetMapping("/{id}")
+        public Visit findById(@PathVariable("id") Long id){
+                return visitService.findById(id);
+        }
+
 }

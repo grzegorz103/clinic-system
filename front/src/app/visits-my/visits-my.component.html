@@ -5,14 +5,20 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Data wizyty</th>
+                    <th scope="col">Wizyta</th>
                     <th scope="col">Edytuj</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let visit of visits; let i = index">
                     <th scope="row">{{ i + 1}}</th>
-                    <td>{{visit.visitDate}}</td>
-                    <td><button class="btn btn-primary">Zapisz</button></td>
+                    <td>{{visit.visitDate | amLocale:'pl' | amDateFormat:'DD MMMM YYYY, HH:mm:ss'}}</td>
+                    <td>
+                        <dl-date-time-picker startView="day" maxView="month" minView="minute" minuteStep="30"
+                   startDate="-0m"         [(ngModel)]="visit.visitDate">
+                        </dl-date-time-picker>
+                    </td>
+                    <td><button class="btn btn-primary" [routerLink]="['/visits', visit.id]">Edytuj</button></td>
                 </tr>
             </tbody>
         </table>

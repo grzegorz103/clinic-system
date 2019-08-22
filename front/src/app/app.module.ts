@@ -13,6 +13,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from './services/user.service';
 import { RequestInterceptor } from './request-interceptor';
 import { VisitsMyComponent } from './visits-my/visits-my.component';
+import { DlDateTimeDateModule, DlDateTimePickerModule } from 'angular-bootstrap-datetimepicker';
+import { MomentModule } from 'ngx-moment';
+import 'moment/locale/de';
+import { VisitEditComponent } from './visit-edit/visit-edit.component';
 
 @NgModule({
   declarations: [
@@ -21,14 +25,18 @@ import { VisitsMyComponent } from './visits-my/visits-my.component';
     LoginComponent,
     RegisterComponent,
     VisitCreateComponent,
-    VisitsMyComponent
+    VisitsMyComponent,
+    VisitEditComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    DlDateTimeDateModule,
+    DlDateTimePickerModule, 
+    MomentModule
   ],
   providers: [UserService, {
     provide: HTTP_INTERCEPTORS,

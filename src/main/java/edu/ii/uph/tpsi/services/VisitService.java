@@ -18,4 +18,6 @@ public interface VisitService
         List<Visit> findByDoctorId(Long doctorId);
 
         List<Visit> findByPatient();
+
+        Visit findById ( Long id );
 }

@@ -70,4 +70,10 @@ public class VisitServiceImpl implements VisitService
                         .filter( e -> e.getPatient().getUser().getUsername().equals( username ) )
                         .collect( Collectors.toList() );
         }
+
+        @Override
+        public Visit findById ( Long id )
+        {
+                return visitRepository.findById( id ).get();
+        }
 }
