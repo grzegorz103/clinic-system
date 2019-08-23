@@ -17,6 +17,7 @@ import { DlDateTimeDateModule, DlDateTimePickerModule } from 'angular-bootstrap-
 import { MomentModule } from 'ngx-moment';
 import 'moment/locale/de';
 import { VisitEditComponent } from './visit-edit/visit-edit.component';
+import { VisitDetailsComponent } from './visit-details/visit-details.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { VisitEditComponent } from './visit-edit/visit-edit.component';
     RegisterComponent,
     VisitCreateComponent,
     VisitsMyComponent,
-    VisitEditComponent
+    VisitEditComponent,
+    VisitDetailsComponent
   ],
   imports: [
     BrowserModule,

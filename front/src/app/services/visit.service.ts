@@ -24,6 +24,6 @@ export class VisitService {
   }
 
   findById(id: number) {
-    return this.http.get<Visit>(this.url + id);
+    return this.http.get<Visit>(this.url + 'one/' + id);
   }
 }

@@ -4,7 +4,6 @@ import { Visit } from '../models/visit';
 import * as moment from 'moment';
 
 
-
 @Component({
   selector: 'app-visits-my',
   templateUrl: './visits-my.component.html',

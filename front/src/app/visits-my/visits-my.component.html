@@ -14,7 +14,7 @@
                 <tr *ngFor="let visit of visits; let i = index">
                     <th scope="row">{{ i + 1}}</th>
                     <td>{{visit.visitDate | amLocale:'pl' | amDateFormat:'DD MMMM YYYY, HH:mm'}}</td>
-                    <td><button class="btn btn-success" [routerLink]="['/visits/details', visit.id]">Edytuj</button></td>
+                    <td><button class="btn btn-success" [routerLink]="['/visits', visit.id, 'details']">Szczegóły</button></td>
                     <td><button class="btn btn-primary" [routerLink]="['/visits', visit.id]">Edytuj</button></td>
                     <td><button class="btn btn-danger" (click)=remove()>Usuń</button></td>
                 </tr>
