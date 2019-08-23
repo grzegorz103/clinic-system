@@ -112,13 +112,13 @@ public class UserServiceImpl implements UserService
         @Override
         public boolean hasAdminRole ()
         {
-                return (( User ) SecurityContextHolder
+                return (( org.springframework.security.core.userdetails.User ) SecurityContextHolder
                         .getContext()
                         .getAuthentication()
                         .getPrincipal()
-                ).getUserRoles()
+                ).getAuthorities()
                         .stream()
-                        .anyMatch( e -> e.getUserType() == UserRole.UserType.ROLE_ADMIN );
+                        .anyMatch( e -> e.getAuthority().equals( "ROLE_ADMIN" ) );
         }
 }
 

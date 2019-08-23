@@ -18,6 +18,7 @@ import { MomentModule } from 'ngx-moment';
 import 'moment/locale/de';
 import { VisitEditComponent } from './visit-edit/visit-edit.component';
 import { VisitDetailsComponent } from './visit-details/visit-details.component';
+import { DoctorListComponent } from './doctor-list/doctor-list.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { VisitDetailsComponent } from './visit-details/visit-details.component';
     VisitCreateComponent,
     VisitsMyComponent,
     VisitEditComponent,
-    VisitDetailsComponent
+    VisitDetailsComponent,
+    DoctorListComponent
   ],
   imports: [
     BrowserModule,

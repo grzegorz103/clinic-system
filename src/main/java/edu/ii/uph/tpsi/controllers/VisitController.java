@@ -5,6 +5,7 @@ import edu.ii.uph.tpsi.models.Visit;
 import edu.ii.uph.tpsi.services.DoctorService;
 import edu.ii.uph.tpsi.services.VisitService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -45,6 +46,7 @@ public class VisitController
         {
                 return visitService.removeById( id );
         }
+
 
         @GetMapping ("/bydoctor/{id}")
         public List<Visit> findByDoctorId ( @PathVariable ("id") Long id )

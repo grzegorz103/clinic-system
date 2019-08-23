@@ -29,4 +29,5 @@ public class Visit
         @JoinColumn (name = "patient_id")
         @JsonIgnore
         private Patient patient;
+
 }

@@ -7,6 +7,7 @@ import {HttpClient} from "@angular/common/http";
 })
 export class DoctorService {
 
+
   url = 'http://localhost:8080/api/doctors/';
 
   constructor(private http: HttpClient) {
@@ -18,5 +19,13 @@ export class DoctorService {
 
   findUsers(){
     return this.http.get<Doctor>(this.url + 'my');
+  }
+
+  remove(id: number) {
+  return this.http.delete<Doctor>(this.url + id);
+  }
+
+  save(doctor: Doctor){
+    return this.http.post<Doctor>(this.url, doctor);
   }
 }

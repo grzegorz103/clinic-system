@@ -30,7 +30,7 @@ export class UserService {
   }
 
   fetchAdminRole() {
-    this.http.get<boolean>(this.url).subscribe(res => localStorage.setItem('adminRole', String(res)));
+    this.http.get<boolean>(this.url + 'admin').subscribe(res => localStorage.setItem('adminRole', String(res)));
   }
 
   getUsername() {

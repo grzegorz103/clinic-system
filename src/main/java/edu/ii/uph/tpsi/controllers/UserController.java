@@ -7,6 +7,7 @@ import edu.ii.uph.tpsi.services.DoctorService;
 import edu.ii.uph.tpsi.services.PatientService;
 import edu.ii.uph.tpsi.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -59,6 +60,5 @@ public class UserController
         {
                 return userService.hasAdminRole();
         }
-
 
 }
