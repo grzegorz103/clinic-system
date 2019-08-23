@@ -4,6 +4,8 @@ import com.sun.istack.internal.NotNull;
 import edu.ii.uph.tpsi.models.Doctor;
 import edu.ii.uph.tpsi.repositories.DoctorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -50,5 +52,21 @@ public class DoctorServiceImpl implements DoctorService
                 doctorRepository.delete( fromDb );
 
                 return fromDb;
+        }
+
+        @Override
+        public Doctor findUsers ()
+        {
+                Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+                String username = loggedInUser.getName();
+                return doctorRepository.findAll()
+                        .stream()
+                        .filter( e -> e.getPatients()
+                                .stream()
+                                .filter( g -> g.getUser() != null )
+                                .anyMatch( f -> f.getUser().getUsername().equals( username ) )
+                        )
+                        .findFirst()
+                        .orElse( null );
         }
 }

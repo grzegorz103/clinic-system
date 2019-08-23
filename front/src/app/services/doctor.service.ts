@@ -15,4 +15,8 @@ export class DoctorService {
   findAll() {
     return this.http.get<Doctor[]>(this.url);
   }
+
+  findUsers(){
+    return this.http.get<Doctor>(this.url + 'my');
+  }
 }

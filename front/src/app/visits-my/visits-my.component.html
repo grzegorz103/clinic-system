@@ -16,7 +16,7 @@
                     <td>{{visit.visitDate | amLocale:'pl' | amDateFormat:'DD MMMM YYYY, HH:mm'}}</td>
                     <td><button class="btn btn-success" [routerLink]="['/visits', visit.id, 'details']">Szczegóły</button></td>
                     <td><button class="btn btn-primary" [routerLink]="['/visits', visit.id]">Edytuj</button></td>
-                    <td><button class="btn btn-danger" (click)=remove()>Usuń</button></td>
+                    <td><button class="btn btn-danger" (click)=remove(visit.id)>Usuń</button></td>
                 </tr>
             </tbody>
         </table>

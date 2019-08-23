@@ -65,7 +65,16 @@ public class VisitServiceImpl implements VisitService
         @Override
         public Visit removeById ( Long id )
         {
-                return null;
+                Visit visit = visitRepository.findById( id ).orElse( null );
+
+                if ( visit == null )
+                {
+                        throw new RuntimeException( "Not found exception" );
+                }
+
+                visitRepository.delete( visit );
+
+                return visit;
         }
 
         @Override

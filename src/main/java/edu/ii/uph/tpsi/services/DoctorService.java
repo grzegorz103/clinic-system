@@ -13,4 +13,6 @@ public interface DoctorService
         Doctor update(Doctor doctor);
 
         Doctor removeById(Long id);
+
+        Doctor findUsers();
 }

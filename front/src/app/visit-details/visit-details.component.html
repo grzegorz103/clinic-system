@@ -1,3 +1,10 @@
-<div class="container">
-   Data Wizyty: {{visit.visitDate | amDateFormat:'DD MMMM YYYY, HH:mm'}} ({{visit.visitDate | amTimeAgo }})
+<div class="container text-center">
+    <p class="font-weight-bold">Data Wizyty:</p> {{visit?.visitDate | amDateFormat:'DD MMMM YYYY, HH:mm'}}
+    ({{visit?.visitDate | amTimeAgo }})
+    <div class="my-4">
+        <p class="font-weight-bold">Przyczyna: </p> {{ visit?.reason}}
+    </div>
+    <div class="my-4">
+        <p class="font-weight-bold">Lekarz: </p> {{ doctor?.user.name}} {{ doctor?.user.surname}}
+    </div>
 </div>

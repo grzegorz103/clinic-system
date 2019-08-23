@@ -9,18 +9,21 @@ import javax.persistence.*;
 import java.time.Instant;
 
 @Entity
-@Table (name="visits")
+@Table (name = "visits")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Visit
 {
         @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @GeneratedValue (strategy = GenerationType.IDENTITY)
         private Long id;
 
-        @Column(name="visit_date")
+        @Column (name = "visit_date")
         private Instant visitDate;
+
+        @Column (name = "reason")
+        private String reason;
 
         @ManyToOne
         @JoinColumn (name = "patient_id")

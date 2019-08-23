@@ -43,4 +43,9 @@ public class DoctorController
         {
                 return doctorService.removeById( id );
         }
+
+        @GetMapping("/my")
+        public Doctor findUsers(){
+                return doctorService.findUsers();
+        }
 }
