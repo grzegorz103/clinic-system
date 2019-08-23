@@ -59,23 +59,6 @@ public class UserServiceImpl implements UserService
                 return saved;
         }
 
-        @Override
-        public List<User> findAll ()
-        {
-                return null;
-        }
-
-        @Override
-        public User update ( User doctor )
-        {
-                return null;
-        }
-
-        @Override
-        public User removeById ( Long id )
-        {
-                return null;
-        }
 
         @Override
         public UserDetails loadUserByUsername ( String s ) throws UsernameNotFoundException

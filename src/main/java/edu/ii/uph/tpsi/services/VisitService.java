@@ -9,8 +9,6 @@ public interface VisitService
 {
         Visit create( Visit visit);
 
-        List<Visit> findAll();
-
         Visit update(Visit visit);
 
         Visit removeById(Long id);

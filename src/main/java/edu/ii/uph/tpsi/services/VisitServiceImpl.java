@@ -38,12 +38,6 @@ public class VisitServiceImpl implements VisitService
         }
 
         @Override
-        public List<Visit> findAll ()
-        {
-                return null;
-        }
-
-        @Override
         public Visit update ( Visit visit )
         {
                 if ( visitRepository.existsByVisitDate( visit.getVisitDate() ) )

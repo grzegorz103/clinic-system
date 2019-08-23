@@ -10,12 +10,6 @@ public interface UserService extends UserDetailsService
 {
         User create( User user);
 
-        List<User> findAll();
-
-        User update(User user);
-
-        User removeById( Long id);
-
         boolean isLoginCorrect(String username, String password);
 
         boolean hasAdminRole ();

@@ -7,6 +7,7 @@ import { VisitEditComponent } from './visit-edit/visit-edit.component';
 import { VisitDetailsComponent } from './visit-details/visit-details.component';
 import { VisitCreateComponent } from './visit-create/visit-create.component';
 import { DoctorListComponent } from './doctor-list/doctor-list.component';
+import { IndexComponent } from './index/index.component';
 
 
 const routes: Routes = [
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'visits/:id', component: VisitEditComponent },
   { path: 'visits/:id/details', component: VisitDetailsComponent },
   { path: 'visits/new/form', component: VisitCreateComponent },
-  {path: 'doctors', component: DoctorListComponent}
+  { path: 'doctors', component: DoctorListComponent },
+  { path: '', component: IndexComponent }
 ];
 
 @NgModule({

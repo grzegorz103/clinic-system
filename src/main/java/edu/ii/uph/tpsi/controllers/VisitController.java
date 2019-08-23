@@ -29,12 +29,6 @@ public class VisitController
                 return visitService.create( visit );
         }
 
-        @GetMapping
-        public List<Visit> findAll ()
-        {
-                return visitService.findAll();
-        }
-
         @PutMapping
         public Visit update ( @RequestBody Visit visit )
         {

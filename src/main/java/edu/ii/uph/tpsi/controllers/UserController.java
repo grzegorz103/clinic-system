@@ -37,24 +37,6 @@ public class UserController
                 return userService.create( user );
         }
 
-        @GetMapping
-        public List<User> findAll ()
-        {
-                return userService.findAll();
-        }
-
-        @PutMapping
-        public User update ( @RequestBody User user )
-        {
-                return userService.update( user );
-        }
-
-        @DeleteMapping ("/{id}")
-        public User removeById ( @PathVariable ("id") Long id )
-        {
-                return userService.removeById( id );
-        }
-
         @GetMapping ("/admin")
         public Boolean hasAdminRole ()
         {

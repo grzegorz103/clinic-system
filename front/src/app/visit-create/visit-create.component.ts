@@ -32,7 +32,8 @@ export class VisitCreateComponent implements OnInit {
   }
 
   save() {
-    if (this.visit.visitDate.getTime() < Date.now()) {
+    if (this.visit.visitDate.getTime() < Date.now() || (this.visit.visitDate.getHours() < 8 ||
+      this.visit.visitDate.getHours() > 16)) {
       alert('Niepoprawna data');
       return;
     }
