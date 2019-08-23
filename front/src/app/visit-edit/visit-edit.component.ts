@@ -3,6 +3,7 @@ import { VisitService } from '../services/visit.service';
 import { Visit } from '../models/visit';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
+import { DateButton } from 'angular-bootstrap-datetimepicker';
 
 @Component({
   selector: 'app-visit-edit',
@@ -47,4 +48,9 @@ export class VisitEditComponent implements OnInit {
       }, err => { alert('Data zajeta'); this.getVisit() });
   }
 
+   selectFilter(dateButton: DateButton, viewName: string): boolean {
+    let date = new Date();
+    date.setHours(0,0,0,0);
+    return dateButton.value >= date.getTime();
+ }
 }
