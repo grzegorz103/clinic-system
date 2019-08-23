@@ -1,5 +1,6 @@
 package edu.ii.uph.tpsi.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,5 +24,6 @@ public class Visit
 
         @ManyToOne
         @JoinColumn (name = "patient_id")
+        @JsonIgnore
         private Patient patient;
 }

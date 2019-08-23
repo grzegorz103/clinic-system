@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping ("/users")
+@RequestMapping ("/api/users")
+@CrossOrigin
 public class UserController
 {
         private final UserService userService;
@@ -21,6 +22,12 @@ public class UserController
         public UserController ( UserService userService )
         {
                 this.userService = userService;
+        }
+
+        @PostMapping ("/login")
+        public boolean login ( String username, String password )
+        {
+                return userService.isLoginCorrect( username, password );
         }
 
         @PostMapping
@@ -46,4 +53,12 @@ public class UserController
         {
                 return userService.removeById( id );
         }
+
+        @GetMapping ("/admin")
+        public Boolean hasAdminRole ()
+        {
+                return userService.hasAdminRole();
+        }
+
+
 }

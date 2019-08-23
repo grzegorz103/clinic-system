@@ -1,8 +1,12 @@
 package edu.ii.uph.tpsi.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.time.Instant;
@@ -13,26 +17,21 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Patient
 {
         @Id
         @GeneratedValue (strategy = GenerationType.IDENTITY)
         private Long id;
 
-        @Column(name="pesel")
-        private String pesel;
+        @OneToOne(cascade = CascadeType.ALL)
+        @JsonIgnore
+        @JoinColumn (name = "user_id")
+        private User user;
 
-        @Column(name="name")
-        private String name;
-
-        @Column(name="surname")
-        private String surname;
-
-        @Column(name="date_of_birth")
-        private Instant dateOfBirth;
-
-        @OneToMany (mappedBy = "patient", fetch = FetchType.EAGER)
-        private List<Visit> patients;
+        @OneToMany (mappedBy = "patient")
+        @LazyCollection (LazyCollectionOption.FALSE)
+        private List<Visit> visits;
 
         @ManyToOne
         @JoinColumn (name = "doctor_id")

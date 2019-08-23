@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping ("/visits")
+@RequestMapping ("/api/visits")
+@CrossOrigin
 public class VisitController
 {
         private final VisitService visitService;
@@ -44,4 +45,22 @@ public class VisitController
         {
                 return visitService.removeById( id );
         }
+
+        @GetMapping ("/bydoctor/{id}")
+        public List<Visit> findByDoctorId ( @PathVariable ("id") Long id )
+        {
+                return visitService.findByDoctorId( id );
+        }
+
+        @GetMapping ("/my")
+        public List<Visit> findUsers ()
+        {
+                return visitService.findByPatient();
+        }
+
+        @GetMapping("/{id}")
+        public Visit findById(@PathVariable("id") Long id){
+                return visitService.findById(id);
+        }
+
 }

@@ -7,11 +7,17 @@ import java.util.List;
 
 public interface VisitService
 {
-        Visit create( Visit doctor);
+        Visit create( Visit visit);
 
         List<Visit> findAll();
 
-        Visit update(Visit doctor);
+        Visit update(Visit visit);
 
         Visit removeById(Long id);
+
+        List<Visit> findByDoctorId(Long doctorId);
+
+        List<Visit> findByPatient();
+
+        Visit findById ( Long id );
 }
