@@ -4,7 +4,6 @@ import { Visit } from '../models/visit';
 import * as moment from 'moment';
 
 
-
 @Component({
   selector: 'app-visits-my',
   templateUrl: './visits-my.component.html',
@@ -14,11 +13,15 @@ export class VisitsMyComponent implements OnInit {
 
   visits: Visit[];
 
-  constructor(private visitService: VisitService) { 
+  constructor(private visitService: VisitService) {
     moment.locale('pl');
   }
 
   ngOnInit() {
+    this.fetchData();
+  }
+
+  fetchData() {
     this.visitService.findUsers()
       .subscribe(res => {
         this.visits = res;
@@ -29,5 +32,9 @@ export class VisitsMyComponent implements OnInit {
   save(index: number) {
     this.visitService.update(this.visits[index])
       .subscribe(res => this.visits[index] = res);
+  }
+
+  remove(id) {
+    this.visitService.remove(id).subscribe(res => this.fetchData());
   }
 }

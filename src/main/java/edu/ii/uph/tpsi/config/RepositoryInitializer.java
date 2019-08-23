@@ -49,25 +49,13 @@ public class RepositoryInitializer
                         {
                                 userRepository.save(
                                         User.builder()
+                                                .name( "Jan" )
+                                                .surname( "Kowalski" )
+                                                .pesel( "84110392483" )
                                                 .username( "admin" )
+                                                .email( "jan@kowalski.pl" )
                                                 .password( encoder.encode( "admin1" ) )
-                                                .userRoles( new HashSet<>( Arrays.asList( userRoleRepository.findByUserType( UserRole.UserType.ROLE_ADMIN ), userRoleRepository.findByUserType( UserRole.UserType.ROLE_USER ) ) ) )
-                                                .build()
-                                );
-
-                                userRepository.save(
-                                        User.builder()
-                                                .username( "user1" )
-                                                .password( encoder.encode( "usertest" ) )
-                                                .userRoles( new HashSet<>( Collections.singleton( userRoleRepository.findByUserType( UserRole.UserType.ROLE_USER ) ) ) )
-                                                .build()
-                                );
-
-                                userRepository.save(
-                                        User.builder()
-                                                .username( "user2" )
-                                                .password( encoder.encode( "usertest2" ) )
-                                                .userRoles( new HashSet<>( Collections.singleton( userRoleRepository.findByUserType( UserRole.UserType.ROLE_USER ) ) ) )
+                                                .userRoles( new HashSet<>( Collections.singletonList( userRoleRepository.findByUserType( UserRole.UserType.ROLE_ADMIN ) ) ) )
                                                 .build()
                                 );
                         }

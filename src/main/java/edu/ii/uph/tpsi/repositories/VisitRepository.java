@@ -11,4 +11,6 @@ public interface VisitRepository extends JpaRepository<Visit, Long>
         List<Visit> findByPatient_Doctor_Id(Long id);
 
         boolean existsByVisitDate(Instant visitDate);
+
+        void deleteAllByPatient_Doctor_Id(Long id);
 }

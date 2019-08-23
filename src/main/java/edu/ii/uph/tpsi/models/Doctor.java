@@ -21,7 +21,7 @@ public class Doctor
         @GeneratedValue
         private Long id;
 
-        @OneToOne
+        @OneToOne(cascade = CascadeType.ALL)
         @JoinColumn (name = "user_id")
         private User user;
 
@@ -29,4 +29,7 @@ public class Doctor
         @LazyCollection (LazyCollectionOption.FALSE)
         @JsonIgnore
         private List<Patient> patients;
+
+        @Column (name = "deleted")
+        private boolean deleted;
 }

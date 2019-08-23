@@ -59,23 +59,6 @@ public class UserServiceImpl implements UserService
                 return saved;
         }
 
-        @Override
-        public List<User> findAll ()
-        {
-                return null;
-        }
-
-        @Override
-        public User update ( User doctor )
-        {
-                return null;
-        }
-
-        @Override
-        public User removeById ( Long id )
-        {
-                return null;
-        }
 
         @Override
         public UserDetails loadUserByUsername ( String s ) throws UsernameNotFoundException
@@ -112,13 +95,13 @@ public class UserServiceImpl implements UserService
         @Override
         public boolean hasAdminRole ()
         {
-                return (( User ) SecurityContextHolder
+                return (( org.springframework.security.core.userdetails.User ) SecurityContextHolder
                         .getContext()
                         .getAuthentication()
                         .getPrincipal()
-                ).getUserRoles()
+                ).getAuthorities()
                         .stream()
-                        .anyMatch( e -> e.getUserType() == UserRole.UserType.ROLE_ADMIN );
+                        .anyMatch( e -> e.getAuthority().equals( "ROLE_ADMIN" ) );
         }
 }
 

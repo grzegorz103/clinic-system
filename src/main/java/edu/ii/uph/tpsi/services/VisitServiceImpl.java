@@ -1,6 +1,8 @@
 package edu.ii.uph.tpsi.services;
 
 import edu.ii.uph.tpsi.models.Visit;
+import edu.ii.uph.tpsi.repositories.PatientRepository;
+import edu.ii.uph.tpsi.repositories.UserRepository;
 import edu.ii.uph.tpsi.repositories.VisitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -8,6 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,22 +19,22 @@ public class VisitServiceImpl implements VisitService
 {
         private final VisitRepository visitRepository;
 
+        private final UserRepository userRepository;
+
         @Autowired
-        public VisitServiceImpl ( VisitRepository visitRepository )
+        public VisitServiceImpl ( VisitRepository visitRepository, UserRepository userRepository )
         {
                 this.visitRepository = visitRepository;
+                this.userRepository = userRepository;
         }
 
         @Override
-        public Visit create ( Visit visit )
+        public Visit create ( @NotNull Visit visit )
         {
-                return null;
-        }
-
-        @Override
-        public List<Visit> findAll ()
-        {
-                return null;
+                Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+                String username = loggedInUser.getName();
+                visit.setPatient( userRepository.findByUsername( username ).getPatient() );
+                return visitRepository.save( visit );
         }
 
         @Override
@@ -65,7 +68,16 @@ public class VisitServiceImpl implements VisitService
         @Override
         public Visit removeById ( Long id )
         {
-                return null;
+                Visit visit = visitRepository.findById( id ).orElse( null );
+
+                if ( visit == null )
+                {
+                        throw new RuntimeException( "Not found exception" );
+                }
+
+                visitRepository.delete( visit );
+
+                return visit;
         }
 
         @Override
