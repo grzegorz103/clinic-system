@@ -1,0 +1,9 @@
+<div class="jumbotron">
+    <div class="container">
+        <h1 class="display-4">Przychodnia online</h1>
+        <p class="lead">Najlepsza przychodnia w internecie.</p>
+        <hr class="my-4">
+        <p>Karol Zduńczyk TPSI projekt</p>
+        <a class="btn btn-primary btn-lg" *ngIf="!userService.isAuthenticated()" routerLink="/register" role="button">Zarejestruj się</a>
+    </div>
+</div>

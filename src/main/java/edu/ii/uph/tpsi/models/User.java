@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.time.Instant;
 import java.util.Set;
 
@@ -29,13 +30,15 @@ public class User
         private String password;
 
         @Column (name = "pesel")
+        @NotEmpty
         private String pesel;
 
         @Column (name = "name")
+        @NotEmpty
         private String name;
 
         @Column (name = "surname")
-        private String surname;
+        @NotEmpty        private String surname;
 
         @ManyToMany (fetch = FetchType.EAGER)
         @JoinTable (name = "users_roles",
@@ -51,4 +54,6 @@ public class User
         @OneToOne (mappedBy = "user", cascade = CascadeType.ALL,
                 fetch = FetchType.LAZY, optional = false)
         private Patient patient;
+
+        private String email;
 }

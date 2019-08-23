@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {DoctorService} from "../../services/doctor.service";
-import {UserService} from "../../services/user.service";
-import {User} from "../../models/user";
-import {Doctor} from "../../models/doctor";
+import { Component, OnInit } from '@angular/core';
+import { DoctorService } from "../../services/doctor.service";
+import { UserService } from "../../services/user.service";
+import { User } from "../../models/user";
+import { Doctor } from "../../models/doctor";
 import { Patient } from 'src/app/models/patient';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private doctorService: DoctorService,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {
     this.user = new User();
     this.user.patient = new Patient();
@@ -30,7 +32,7 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     this.userService.create(this.user)
-      .subscribe(res => alert('Thank you for registering'),
+      .subscribe(res => { alert('Dziękujemy za rejestrację'); this.router.navigate(['login']) },
         err => console.log('Error'));
   }
 }

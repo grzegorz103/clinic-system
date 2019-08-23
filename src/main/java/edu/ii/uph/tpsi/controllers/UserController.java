@@ -7,6 +7,7 @@ import edu.ii.uph.tpsi.services.DoctorService;
 import edu.ii.uph.tpsi.services.PatientService;
 import edu.ii.uph.tpsi.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,29 +37,10 @@ public class UserController
                 return userService.create( user );
         }
 
-        @GetMapping
-        public List<User> findAll ()
-        {
-                return userService.findAll();
-        }
-
-        @PutMapping
-        public User update ( @RequestBody User user )
-        {
-                return userService.update( user );
-        }
-
-        @DeleteMapping ("/{id}")
-        public User removeById ( @PathVariable ("id") Long id )
-        {
-                return userService.removeById( id );
-        }
-
         @GetMapping ("/admin")
         public Boolean hasAdminRole ()
         {
                 return userService.hasAdminRole();
         }
-
 
 }

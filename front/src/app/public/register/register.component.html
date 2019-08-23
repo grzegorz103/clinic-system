@@ -5,25 +5,37 @@
         <h2>Rejestracja nowego pacjenta</h2>
         <div class="form-group">
           <label for="name">Login</label>
-          <input type="text" [(ngModel)]="user.username" class="form-control" id="name" name="name" required
-            #name="ngModel">
+          <input type="text" [(ngModel)]="user.username" minlength="5" class="form-control" id="name" name="name"
+            required #name="ngModel">
         </div>
 
         <div class="form-group">
           <label for="password">Hasło</label>
-          <input type="password" [(ngModel)]="user.password" class="form-control" id="password" name="password" required
-            #name="ngModel">
+          <input type="password" [(ngModel)]="user.password" minlength="6" class="form-control" id="password"
+            name="password" required #name="ngModel">
         </div>
 
         <div class="form-group">
           <label for="pesel">Pesel</label>
-          <input type="text" [(ngModel)]="user.pesel" class="form-control" id="pesel" name="pesel" required
+          <input type="number" [(ngModel)]="user.pesel" class="form-control" id="pesel" name="pesel" required
             #name="ngModel">
         </div>
 
         <div class="form-group">
+            <label for="imie">Imię</label>
+            <input type="text" [(ngModel)]="user.name" class="form-control" id="imie" name="imie" required
+              #name="ngModel">
+          </div>
+
+          <div class="form-group">
+              <label for="nazwisko">Nazwisko</label>
+              <input type="text" [(ngModel)]="user.surname" class="form-control" id="surname" name="surname" required
+                #name="ngModel">
+            </div>
+
+        <div class="form-group">
           <label for="email">Email</label>
-          <input type="text" [(ngModel)]="user.email" class="form-control" id="email" name="email" required
+          <input type="text" [(ngModel)]="user.email" required class="form-control" id="email" name="email" required
             #email="ngModel">
         </div>
 
@@ -31,7 +43,8 @@
         <div class="form-group">
           <label for="doctor">Doktor</label>
           <select class="form-control" [(ngModel)]="user.patient.doctor" name="doctor">
-            <option *ngFor="let doctor of doctors" [ngValue]="doctor">{{ doctor.user.name }} </option>
+            <option *ngFor="let doctor of doctors" [ngValue]="doctor">{{ doctor.user.name }} {{ doctor.user.surname}}
+            </option>
           </select>
         </div>
 

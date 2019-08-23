@@ -4,4 +4,5 @@ export class Visit {
     id: number;
     visitDate: Date;
     patient: Patient;
+    reason: string;
 }
